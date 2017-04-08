@@ -37,7 +37,8 @@ public class Assign5 {
       String[] allTheWords = lineCombined.split("\n");
 
       Linear hashTable = new Linear(count);
-      
+      hashTable.insert("calvin");
+      hashTable.insert("lac");
 
       printWriter1.close();
     }

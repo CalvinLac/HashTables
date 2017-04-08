@@ -15,4 +15,8 @@ public class Node {
   public int getLink(){
     return nextIndex;
   }
+
+  public String getVal() {
+    return value;
+  }
 }

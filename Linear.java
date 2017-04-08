@@ -14,10 +14,14 @@ public class Linear {
   }
   
   private int hash(String key) {
-    char[] eachChar = key.split("(?!^)");
+    int length = key.length();
+    char[] eachChar = new char[length];
+    for (int i = 0; i < length ; i++) {
+      eachChar[i] = new Character(key.charAt(i));
+    }
     int returnInt = 0;
     for(int i = 0; i < eachChar.length - 1; i++){
-      returnInt += Character.getNumbericValue(eachChar[i]);
+      returnInt += Character.getNumericValue(eachChar[i]);
     }
     returnInt = returnInt%maxSize;
     return returnInt;
@@ -33,50 +37,37 @@ public class Linear {
       return;
     }
     else{
+      int previousTemp = -1;
       while(nodes[temp].getLink() != -1){
+        previousTemp = temp;
         temp = nodes[temp].getLink();
       }
-      
-    }
-    
-    do{
-      if (keys[i] == null) {
-        keys[i] = key;
-        vals[i] = val;
-        currentSize++;
-        return;
+      while(nodes[temp] != null){
+        temp -= 1;
       }
-      if (keys[i].equals(key)) {
-        vals[i] = val;
-        return;
-      }
-      i = (i + 1) %maxSize;
-      
-    }while(i != temp);
-  }
-
-
-  public boolean contains(String key)
-  {
-    return get(key)!=null;
-  }
-
-  public void remove(String key)
-  {
-    if(!contains(key))
-    {
-      return;
+      nodes[temp] = new Node(key);
+      nodes[previousTemp].setLink(temp);
     }
-    int i=hash(key);
-    while(!key.equals(key[i]))
-      i=(i+1)%maxSize;
-    key[i]=val[i]=null
-    for(i=(i+1)% maxSize; keys[i]!=null; i=(i+1)%maxSize)
-    {
-      String tmp1=keys[i],temp2=vals[i];
-      keys[i]=vals[i]=null;
-      currentSize--;
-      insert(tmp1,temp2);
-    }
-    currentSize--;
   }
+}
+
+  // public void remove(String key)
+  // {
+  //   if(!contains(key))
+  //   {
+  //     return;
+  //   }
+  //   int i=hash(key);
+  //   while(!key.equals(key[i])) {
+  //     i=(i+1)%maxSize;
+  //   }
+  //   key[i]=val[i]=null;
+  //   for(i=(i+1)% maxSize; keys[i]!=null; i=(i+1)%maxSize)
+  //   {
+  //     String tmp1=keys[i],temp2=vals[i];
+  //     keys[i]=vals[i]=null;
+  //     currentSize--;
+  //     insert(tmp1,temp2);
+  //   }
+  //   currentSize--;
+  // }
