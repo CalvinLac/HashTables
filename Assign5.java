@@ -36,12 +36,10 @@ public class Assign5 {
       }
       String[] allTheWords = lineCombined.split("\n");
 
-      for(int i = 0; i < count; i++){
-        System.out.println(allTheWords[i]);
-      }
+      Linear hashTable = new Linear(count);
+      
 
       printWriter1.close();
-      printWriter2.close();
     }
     //This is how we catch the errors
     catch (IOException e) {

@@ -1,34 +1,43 @@
 public class Linear {
   private int currentSize, maxSize;
   
-  private String[] keys;
-  private String[] vals;
+  private Node[] nodes;
   
   Linear (int c) {
     currentSize = 0;
     maxSize = c;
-    keys = new String[maxSize];
-    vals = new String[maxSize];
+    nodes = new Node[c];
   }
   
-  void makeEmpty() {
-    currentSize = 0;
-    keys = new String[maxSize];
-    vals = new String[maxSize];
-  }
-  
-  int getSize() {
+  public int getSize() {
     return this.currentSize;
   }
   
   private int hash(String key) {
-    return key.hashCode()%maxSize; //
+    char[] eachChar = key.split("(?!^)");
+    int returnInt = 0;
+    for(int i = 0; i < eachChar.length - 1; i++){
+      returnInt += Character.getNumbericValue(eachChar[i]);
+    }
+    returnInt = returnInt%maxSize;
+    return returnInt;
   }
   
-  public void insert (String key, String val) {
+  public void insert (String key) {
     int temp = hash(key);
     
     int i = temp; 
+
+    if(nodes[temp] == null) {
+      nodes[temp] = new Node(key);
+      return;
+    }
+    else{
+      while(nodes[temp].getLink() != -1){
+        temp = nodes[temp].getLink();
+      }
+      
+    }
     
     do{
       if (keys[i] == null) {
