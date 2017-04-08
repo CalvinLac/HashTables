@@ -3,7 +3,7 @@ public class Linear {
   
   private Node[] nodes;
   
-  Linear (int c) {
+  public Linear (int c) {
     currentSize = 0;
     maxSize = c;
     nodes = new Node[c];
@@ -29,22 +29,29 @@ public class Linear {
   
   public void insert (String key) {
     int temp = hash(key);
-    
     int i = temp; 
 
     if(nodes[temp] == null) {
+      System.out.println("1");
       nodes[temp] = new Node(key);
       return;
     }
     else{
-      int previousTemp = -1;
+      int previousTemp = temp;
+      System.out.println("2");
       while(nodes[temp].getLink() != -1){
+        System.out.println("3");
         previousTemp = temp;
         temp = nodes[temp].getLink();
       }
       while(nodes[temp] != null){
+        if(temp == 0) {
+          temp = maxSize -1;
+        }
+        System.out.println("4");
         temp -= 1;
       }
+      System.out.println("5");
       nodes[temp] = new Node(key);
       nodes[previousTemp].setLink(temp);
     }
