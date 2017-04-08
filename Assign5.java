@@ -35,12 +35,18 @@ public class Assign5 {
         count++;
       }
       String[] allTheWords = lineCombined.split("\n");
-
+      count *= 1.4;
       Linear hashTable = new Linear(count);
-
       for(int i = 0; i < allTheWords.length -1; i ++){
         hashTable.insert(allTheWords[i]);
       }
+
+      hashTable.print(printWriter1);
+
+      // for(int i = 0; i < allTheWords.length -1; i ++){
+      //   hashTable.search(allTheWords[i]);
+      // }
+      // System.out.println(Linear.searchCounter);
 
       printWriter1.close();
     }

@@ -1,5 +1,9 @@
+import java.io.*;
+
 public class Linear {
   private int currentSize, maxSize;
+  public static int highestCount = 0;
+  public static int searchCounter = 0;
   
   private Node[] nodes;
   
@@ -29,7 +33,7 @@ public class Linear {
   
   public void insert (String key) {
     int temp = hash(key);
-    int i = temp; 
+    int counter = 0; 
 
     if(nodes[temp] == null) {
       System.out.println("1");
@@ -40,20 +44,46 @@ public class Linear {
       int previousTemp = temp;
       System.out.println("2");
       while(nodes[temp].getLink() != -1){
+        counter ++;
         System.out.println("3");
         previousTemp = temp;
         temp = nodes[temp].getLink();
       }
       while(nodes[temp] != null){
+        counter++;
         if(temp == 0) {
           temp = maxSize -1;
         }
         System.out.println("4");
         temp -= 1;
       }
-      System.out.println("5");
+      if(counter > highestCount){
+        highestCount = counter;
+      }
+      System.out.println(highestCount + "hi");
       nodes[temp] = new Node(key);
       nodes[previousTemp].setLink(temp);
+    }
+  }
+
+  public void search(String searchKey) {
+    int counter = 0;
+    int temp = this.hash(searchKey);
+    while(!(nodes[temp].getVal().equals(searchKey))){
+      counter ++;
+      temp = nodes[temp].getLink();
+    }
+    if(counter > searchCounter) {
+      searchCounter = counter;
+    }
+  }
+
+  public void print(PrintWriter printer){
+    for(int i = 0; i < currentSize -1; i++){
+      if(nodes[i] != null) {
+        System.out.println("d");
+        printer.write(nodes[i].getVal());
+      }
     }
   }
 }
