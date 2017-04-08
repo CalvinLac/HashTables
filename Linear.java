@@ -79,10 +79,10 @@ public class Linear {
   }
 
   public void print(PrintWriter printer){
-    for(int i = 0; i < currentSize -1; i++){
+    for(int i = 0; i < maxSize -1; i++){
       if(nodes[i] != null) {
         System.out.println("d");
-        printer.write(nodes[i].getVal());
+        printer.write(nodes[i].getVal() + "\n");
       }
     }
   }
