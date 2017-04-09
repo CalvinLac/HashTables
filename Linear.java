@@ -5,6 +5,7 @@ public class Linear {
   public static int highestCount = 0;
   public static int searchCounter = 0;
   public static int c = 0;
+  public static int totalNumberOfReads = 0;
   
   private Node[] nodes;
   
@@ -43,9 +44,7 @@ public class Linear {
     }
     else{
       int previousTemp = temp;
-      System.out.println("original hash " + temp);
       while(nodes[temp].getLink() != -1){
-        System.out.println("link " + nodes[temp].getLink());
         counter ++;
         temp = nodes[temp].getLink();
         previousTemp = temp;
@@ -60,22 +59,21 @@ public class Linear {
       if(counter > highestCount){
         highestCount = counter;
       }
-      System.out.println(previousTemp);
-      System.out.println(temp);
       nodes[temp] = new Node(key);
       nodes[previousTemp].setLink(temp);
-      System.out.println("");
     }
   }
 
   public void search(String searchKey) {
     int counter = 0;
     int temp = this.hash(searchKey);
-    // while(!(nodes[temp].getVal().equals(searchKey))){
-    //   if(nodes[temp].getLink() == -1){
-    //   }
-    // }
-    if(counter > searchCounter) {
+    totalNumberOfReads ++;
+    while(!(nodes[temp].getVal().equals(searchKey))){
+      temp = nodes[temp].getLink();
+      counter ++;
+      totalNumberOfReads ++;
+    }
+    if(counter > searchCounter){
       searchCounter = counter;
     }
   }
@@ -91,24 +89,3 @@ public class Linear {
     }
   }
 }
-
-  // public void remove(String key)
-  // {
-  //   if(!contains(key))
-  //   {
-  //     return;
-  //   }
-  //   int i=hash(key);
-  //   while(!key.equals(key[i])) {
-  //     i=(i+1)%maxSize;
-  //   }
-  //   key[i]=val[i]=null;
-  //   for(i=(i+1)% maxSize; keys[i]!=null; i=(i+1)%maxSize)
-  //   {
-  //     String tmp1=keys[i],temp2=vals[i];
-  //     keys[i]=vals[i]=null;
-  //     currentSize--;
-  //     insert(tmp1,temp2);
-  //   }
-  //   currentSize--;
-  // }

@@ -48,6 +48,7 @@ public class Assign5 {
         hashTable.search(allTheWords[i]);
       }
       System.out.println(Linear.searchCounter);
+      System.out.println(Linear.totalNumberOfReads);
 
       printWriter1.close();
     }
