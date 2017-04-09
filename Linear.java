@@ -26,9 +26,10 @@ public class Linear {
     }
     int returnInt = 0;
     for(int i = 0; i < eachChar.length - 1; i++){
-      returnInt += Character.getNumericValue(eachChar[i]);
+      int temp = Character.getNumericValue(eachChar[i]);
+      returnInt = (temp + (128*returnInt));
+      returnInt %= maxSize;
     }
-    returnInt = returnInt%maxSize;
     return returnInt;
   }
   
@@ -43,6 +44,7 @@ public class Linear {
     else{
       int previousTemp = temp;
       while(nodes[temp].getLink() != -1){
+        System.out.println("link " + nodes[temp].getLink());
         counter ++;
         previousTemp = temp;
         temp = nodes[temp].getLink();
@@ -50,13 +52,16 @@ public class Linear {
       while(nodes[temp] != null){
         counter++;
         if(temp == 0) {
-          temp = maxSize -1;
+          temp = maxSize;
         }
-        temp -= 1;
+        temp --;
       }
       if(counter > highestCount){
         highestCount = counter;
       }
+      System.out.println(previousTemp);
+      System.out.println(temp);
+      System.out.println("");
       nodes[temp] = new Node(key);
       nodes[previousTemp].setLink(temp);
     }
@@ -65,10 +70,10 @@ public class Linear {
   public void search(String searchKey) {
     int counter = 0;
     int temp = this.hash(searchKey);
-    while(!(nodes[temp].getVal().equals(searchKey))){
-      counter ++;
-      temp = nodes[temp].getLink();
-    }
+    // while(!(nodes[temp].getVal().equals(searchKey))){
+    //   if(nodes[temp].getLink() == -1){
+    //   }
+    // }
     if(counter > searchCounter) {
       searchCounter = counter;
     }
@@ -77,6 +82,9 @@ public class Linear {
   public void print(PrintWriter printer){
     for(int i = 0; i < maxSize; i++){
       if(nodes[i] != null) {
+        if(nodes[i].getLink() != -1){
+          printer.write(nodes[nodes[i].getLink()].getVal() + " df ");
+        }
         printer.write(nodes[i].getVal() + "\n");
       }
     }

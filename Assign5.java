@@ -44,10 +44,10 @@ public class Assign5 {
 
       hashTable.print(printWriter1);
 
-      // for(int i = 0; i < allTheWords.length -1; i ++){
-      //   hashTable.search(allTheWords[i]);
-      // }
-      // System.out.println(Linear.searchCounter);
+      for(int i = 0; i < allTheWords.length; i ++){
+        hashTable.search(allTheWords[i]);
+      }
+      System.out.println(Linear.searchCounter);
 
       printWriter1.close();
     }

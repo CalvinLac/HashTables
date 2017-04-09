@@ -1,0 +1,18 @@
+while(!(nodes[temp].getVal().equals(searchKey))){
+          if(temp == 0){
+            temp = maxSize;
+          }
+          while(nodes[temp-1] == null){
+            counter++;
+            temp --;
+          }
+          temp --;
+        }
+        if(counter > searchCounter) {
+          searchCounter = counter;
+        }
+        return;
+      }
+      else{
+        temp = nodes[temp].getLink();
+      }
