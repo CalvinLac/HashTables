@@ -43,11 +43,12 @@ public class Linear {
     }
     else{
       int previousTemp = temp;
+      System.out.println("original hash " + temp);
       while(nodes[temp].getLink() != -1){
         System.out.println("link " + nodes[temp].getLink());
         counter ++;
-        previousTemp = temp;
         temp = nodes[temp].getLink();
+        previousTemp = temp;
       }
       while(nodes[temp] != null){
         counter++;
@@ -61,9 +62,9 @@ public class Linear {
       }
       System.out.println(previousTemp);
       System.out.println(temp);
-      System.out.println("");
       nodes[temp] = new Node(key);
       nodes[previousTemp].setLink(temp);
+      System.out.println("");
     }
   }
 
